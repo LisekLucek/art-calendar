@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Art Calendar</title>
+	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet"> -->
+	<link rel="stylesheet" href="fonts.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="calendarContainer"></div>
+	<div class="sidePanel">
+
+		<h1>Art calendar generator</h1>
+
+		<h2>1. Select the year</h2>
+
+		<input type="number" min="1000" max="9999" step="1" class="yearInput" onchange="setYear(this.valueAsNumber)" />
+
+		<h2>2. Add your files</h2>
+
+		<p>
+			You can either drag them directly on to the desired day or into the image bin if you want them to be assigned automatically
+		</p>
+
+		<div class="fileBinContainer"></div>
+
+		<p>
+			If you're not happy with image aligment you can drag them around using your mouse
+		</p>
+
+		<h2>3. Download the calendar</h2>
+
+		<p>
+			When you're done click the button to download the calendar
+		</p>
+
+		<button onclick="calendarToImg()">Download as PNG</button>		
+	</div>
+
+
+	<script src="js/lib/dom-to-image.min.js"></script>
+	<script src="js/dropElement.js"></script>
+	<script src="js/calendar.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

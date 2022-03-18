@@ -1,0 +1,249 @@
+body
+{
+	font-family: 'Hubballi', cursive;
+	background: #EEE;
+	font-size: 14px;
+	margin: 0;
+	display: grid;
+	grid-template-columns: 80fr 20fr;
+}
+
+.calendarContainer,
+.sidePanel
+{
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+	overflow: auto;
+	height: 100vh;
+}
+
+.sidePanel
+{
+	width: 20vw;
+	padding: 1em;
+	text-align: center;
+}
+.calendarContainer
+{
+	width: 80vw;
+}
+
+canvas[draggable]
+{
+	cursor: grab;
+}
+
+.calendar
+{
+	display: inline-grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2em 1rem;
+	/* transform: scale(0.5); */
+	transform-origin: top left;
+	background: #FFF;
+	padding: 1rem;
+	color: #444;
+}
+.calendar h1
+{
+	grid-column: 1 / 4;
+	text-align: center;
+	padding: 1rem;
+	margin: 0;
+	font-size: 3em;
+	font-weight: normal;
+	border: 2px solid #CCC;
+	border-radius: 2rem;
+	/* background: #F8F8F8; */
+}
+
+.calendar .month .daysContainer
+{
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 0.5rem;
+}
+
+.calendar .monthHeder
+{
+	grid-column: 1 / 8;
+	text-align: center;
+	padding: 0.5em;
+	/*! font-variant: petite-caps; */
+	font-size: 1.5em;
+	margin-bottom: 0.5rem;
+	border: 2px solid #CCC;
+	border-radius: 2rem;
+	/* background: #F8F8F8; */
+}
+
+.calendar .day
+{
+	width: 8em;
+	height: 8em;
+	text-align: center;
+	box-sizing: border-box;
+	justify-self: end;
+	padding: 0.25rem;
+	display: grid;
+	grid-template-rows: 1.25rem 1fr;
+	position: relative;
+	border-radius: 2rem;
+	border: 2px solid #CCC;
+	/* background: #F8F8F8; */
+	overflow: hidden;
+}
+.calendar .day.day-0
+{
+	border: 2px solid #F99;
+	/* background: #FEE; */
+	color: #F00;
+}
+.calendar .day.day-6
+{
+	border: 2px solid #BCF;
+	/* background: #F3F6FF; */
+	color: #2359FF;
+}
+
+.calendar .day div
+{
+	overflow: hidden;
+}
+.calendar .day.dragOver
+{
+	outline: 2px solid #CCC;
+	box-shadow: 0 0 0.5rem #CCC;
+}
+.calendar .day.day-0.dragOver
+{
+	outline: 2px solid #F99;
+	box-shadow: 0 0 0.5rem #F99;
+}
+.calendar .day.day-6.dragOver
+{
+	outline: 2px solid #BCF;
+	box-shadow: 0 0 0.5rem #BCF;
+}
+
+.calendar .dayContents
+{
+	position: relative;
+	font-size: 0;
+	clear: both;
+}
+
+.calendar canvas
+{
+	width:  calc(100% / 3);
+	height: calc(100% / 3);
+	object-fit: contain;
+	box-sizing: border-box;
+	padding: 0.1rem;
+
+}
+
+.calendar .day.itemsCount-1 canvas
+{
+	width:  100%;
+	height: 100%;
+}
+
+.calendar .day.itemsCount-2 canvas
+{
+	width:  50%;
+	height: 100%;
+}
+.calendar .day.itemsCount-3 canvas,
+.calendar .day.itemsCount-4 canvas
+{
+	width:  50%;
+	height: 50%;
+}
+.calendar .day.itemsCount-3 canvas:first-child
+{
+	height: 100%;
+	float: left;
+}
+
+.calendar .day.itemsCount-2 .dayContents
+{
+	grid-template-rows: 1fr;
+}
+
+.calendar .day.itemsCount-5 canvas,
+.calendar .day.itemsCount-6 canvas
+{
+	width:  calc(100% / 3);
+	height: 50%;
+}
+
+
+.calendar canvas:nth-child(n+10)
+{
+	display: none;
+}
+
+.calendar .day::after
+{
+	content: ">9";
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: #EEEA;
+	padding: 0 0.5em 0.5em 0.2em;
+	border-top-left-radius: 0.5em;
+}
+
+
+.calendar .day.itemsCount-0::after,
+.calendar .day.itemsCount-1::after,
+.calendar .day.itemsCount-2::after,
+.calendar .day.itemsCount-3::after,
+.calendar .day.itemsCount-4::after,
+.calendar .day.itemsCount-5::after,
+.calendar .day.itemsCount-6::after,
+.calendar .day.itemsCount-7::after,
+.calendar .day.itemsCount-8::after,
+.calendar .day.itemsCount-9::after
+{
+	display: none;
+}
+
+.imageBin
+{
+	border: 4px dashed #08F;
+	min-height: 20em;
+	margin: 1em 0;
+	background: #08F4;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 4em);
+	align-items: center;
+	justify-items: center;
+	align-content: start;
+	justify-content: space-between;
+	padding: 0.25em;
+	gap: 0.1em;
+	position: relative;
+}
+.imageBin.dragOver
+{
+	background: #08F6;
+}
+
+.imageBin::before
+{
+	content: "Image bin — drop files here, or directly on to the desired day";
+	position: absolute;
+	font-size: 2em;
+	text-align: center;
+	color: #FFF;
+	padding: 1rem;
+}
+.imageBin canvas
+{
+	max-width:  4em;
+	max-height: 4em;
+	z-index: 1;
+}
